@@ -1,10 +1,26 @@
 const express = require("express");
-const app = express();
 const path = require("path");
-// console.log(path);
-app.use(express.static('public'));
+const ejs = require("ejs")
+
+
+const app = express();
+
+//Template Engine
+app.set("view engine", "ejs");
+
+//Middlewares
+app.use(express.static('public')); 
+
+//Routes
 app.get("/", (req,res)=>{
-    res.sendFile(path.resolve(__dirname, 'temp/index.html'));
+    // res.sendFile(path.resolve(__dirname, 'temp/index.html'));
+    res.render('index');
+})
+app.get("/about", (req,res)=>{
+    res.render('about');
+})
+app.get("/add", (req,res)=>{
+    res.render('add');
 })
 
 
